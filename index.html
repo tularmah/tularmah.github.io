@@ -3,16 +3,257 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tula Rmah | Portfolio has moved</title>
-<!-- CHANGE "YOUR-USERNAME" below (two places) to your GitHub username -->
-<meta http-equiv="refresh" content="0; url=https://YOUR-USERNAME.github.io/">
+<title>Tula Rmah | Mechanical Engineering Portfolio</title>
+<meta name="description" content="Portfolio of Tula Rmah, mechanical engineering student at UNC Charlotte.">
 <style>
-  body { font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif; background:#fbfaf8; color:#1f2430;
-         display:flex; align-items:center; justify-content:center; min-height:100vh; margin:0; text-align:center; }
-  a { color:#6d5bd0; font-weight:600; }
+  :root {
+    --bg: #fbfaf8;
+    --surface: #ffffff;
+    --ink: #1f2430;
+    --muted: #5d6475;
+    --line: #e6e3de;
+    --accent: #6d5bd0;
+    --accent-soft: #efecfb;
+    --green: #00703c; /* nod to Charlotte green */
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Segoe UI", system-ui, -apple-system, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+  a { color: var(--accent); }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+
+  /* nav */
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(251,250,248,.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap { display: flex; justify-content: space-between; align-items: center; height: 60px; }
+  nav .logo { font-weight: 700; letter-spacing: .5px; text-decoration: none; color: var(--ink); }
+  nav ul { list-style: none; display: flex; gap: 22px; }
+  nav ul a { text-decoration: none; color: var(--muted); font-size: .95rem; }
+  nav ul a:hover { color: var(--accent); }
+
+  /* hero */
+  header.hero { padding: 88px 0 64px; }
+  .hero .wrap { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: center; }
+  .eyebrow { color: var(--green); font-weight: 600; font-size: .9rem; letter-spacing: 1px; text-transform: uppercase; }
+  .hero h1 { font-size: clamp(2.4rem, 5vw, 3.4rem); line-height: 1.1; margin: 10px 0 16px; }
+  .hero p.lead { font-size: 1.15rem; color: var(--muted); max-width: 520px; }
+  .btns { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 11px 20px; border-radius: 8px;
+    text-decoration: none; font-weight: 600; font-size: .95rem;
+  }
+  .btn.primary { background: var(--accent); color: #fff; }
+  .btn.ghost { border: 1px solid var(--line); color: var(--ink); background: var(--surface); }
+  .btn:hover { opacity: .88; }
+  .photo {
+    aspect-ratio: 1; width: 100%; max-width: 320px; justify-self: end;
+    border-radius: 50%; object-fit: cover;
+    background: var(--accent-soft);
+    border: 6px solid var(--surface);
+    box-shadow: 0 10px 30px rgba(0,0,0,.08);
+  }
+
+  /* sections */
+  section { padding: 64px 0; border-top: 1px solid var(--line); }
+  section h2 { font-size: 1.8rem; margin-bottom: 8px; }
+  section .sub { color: var(--muted); margin-bottom: 32px; }
+
+  /* about */
+  .about-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; }
+  .facts { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 22px; }
+  .facts dt { font-size: .8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-top: 12px; }
+  .facts dt:first-child { margin-top: 0; }
+  .facts dd { font-weight: 600; }
+
+  /* projects */
+  .projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 22px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+    overflow: hidden; display: flex; flex-direction: column;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(0,0,0,.07); }
+  .card .thumb {
+    height: 170px; background: var(--accent-soft); display: flex; align-items: center; justify-content: center;
+    color: var(--accent); font-size: .85rem; text-align: center; padding: 10px;
+  }
+  .card .thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .card .body { padding: 18px 20px 20px; display: flex; flex-direction: column; flex: 1; }
+  .card .meta { font-size: .8rem; color: var(--green); font-weight: 600; text-transform: uppercase; letter-spacing: .6px; }
+  .card h3 { font-size: 1.15rem; margin: 6px 0 8px; }
+  .card p { color: var(--muted); font-size: .95rem; flex: 1; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .tags span { background: var(--accent-soft); color: var(--accent); font-size: .78rem; padding: 3px 9px; border-radius: 99px; }
+  .card .more { margin-top: 14px; font-size: .9rem; font-weight: 600; text-decoration: none; }
+
+  /* skills */
+  .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 22px; }
+  .skills div { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; }
+  .skills h3 { font-size: 1rem; margin-bottom: 8px; }
+  .skills ul { list-style: none; color: var(--muted); font-size: .95rem; }
+  .skills li { padding: 3px 0; }
+
+  /* contact */
+  .contact { text-align: center; }
+  .contact .btns { justify-content: center; }
+  footer { text-align: center; padding: 28px 0 40px; color: var(--muted); font-size: .85rem; }
+
+  @media (max-width: 760px) {
+    nav ul { display: none; }
+    .hero .wrap, .about-grid { grid-template-columns: 1fr; }
+    .photo { justify-self: start; max-width: 200px; order: -1; }
+    header.hero { padding-top: 48px; }
+  }
 </style>
 </head>
 <body>
-  <p>My portfolio has moved to <a href="https://YOUR-USERNAME.github.io/">YOUR-USERNAME.github.io</a>.</p>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#">Tula Rmah</a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Mechanical Engineering · UNC Charlotte</div>
+      <h1>Hi, I'm Tula.</h1>
+      <p class="lead">I'm a mechanical engineering junior who likes building things that sense, move, and respond. I'm especially interested in biotech and the automotive industry.</p>
+      <div class="btns">
+        <a class="btn primary" href="#projects">See my projects</a>
+        <!-- Upload your resume as resume.pdf in the same folder, and this button will work -->
+        <a class="btn ghost" href="resume.pdf" target="_blank">Resume (PDF)</a>
+      </div>
+    </div>
+    <!-- Replace with a headshot: upload headshot.jpg to the same folder -->
+    <img class="photo" src="headshot.jpg" alt="Photo of Tula Rmah">
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div>
+      <h2>About me</h2>
+      <p class="sub" style="margin-bottom:16px">[Write 3–5 sentences in your own voice: what got you into engineering, what kind of problems you like solving, and what you're looking for next, e.g. a co-op or internship for 2027.]</p>
+      <p style="color:var(--muted)">I'm currently looking for mechanical engineering co-op and internship opportunities in the Charlotte area for spring and summer 2027.</p>
+    </div>
+    <dl class="facts">
+      <dt>School</dt><dd>UNC Charlotte, William States Lee College of Engineering</dd>
+      <dt>Major</dt><dd>B.S. Mechanical Engineering</dd>
+      <dt>Expected graduation</dt><dd>[Month 2028]</dd>
+      <dt>Interests</dt><dd>Biotech · Automotive · Mechatronics</dd>
+    </dl>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <h2>Projects</h2>
+    <p class="sub">A selection of things I've designed, built, and researched.</p>
+
+    <div class="projects">
+
+      <!-- PROJECT 1 -->
+      <article class="card">
+        <div class="thumb">[Add a photo of the build or a still from the demo video]</div>
+        <div class="body">
+          <div class="meta">Team project · Fall 2026</div>
+          <h3>"Fear Meter" Heart-Rate Monitor</h3>
+          <p>With my team, Mog Mob, I built a device that reads heart rate with a PulseSensor and reacts when BPM passes a threshold: an OLED display shows warning messages like "get out," and a servo-driven gauge needle swings to show the fear level. [Add your specific role: e.g. sensor wiring, signal filtering, mechanical design of the gauge.]</p>
+          <div class="tags"><span>Mechatronics</span><span>Signal processing</span><span>Arduino</span><span>Sensors</span></div>
+          <!-- Link to your demo video once it's uploaded (YouTube, Google Drive, etc.) -->
+          <a class="more" href="#">Watch the demo →</a>
+        </div>
+      </article>
+
+      <!-- PROJECT 2 -->
+      <article class="card">
+        <div class="thumb">[Add a campus photo or a chart from your findings]</div>
+        <div class="body">
+          <div class="meta">Research · Fall 2026</div>
+          <h3>Engineering Campus Capacity Study</h3>
+          <p>Archival research for the College of Engineering supporting the case for a new engineering building: tracing when the engineering campus was built (2003–2004), the student, faculty and staff numbers it was designed for, and how far current enrollment has grown beyond them. [Add a key finding, e.g. "enrollment is now X% above design capacity."]</p>
+          <div class="tags"><span>Research</span><span>Data analysis</span><span>Technical writing</span></div>
+        </div>
+      </article>
+
+      <!-- PROJECT 3 -->
+      <article class="card">
+        <div class="thumb">[Add a photo]</div>
+        <div class="body">
+          <div class="meta">ENGR 1202 · Freshman year</div>
+          <h3>Intro to Engineering Group Project</h3>
+          <p>[Describe what your team designed or built in ENGR 1202, what you were responsible for, and what you learned.]</p>
+          <div class="tags"><span>Teamwork</span><span>Design</span></div>
+          <a class="more" href="https://webpages.charlotte.edu/jrezin/Home.html" target="_blank">View project page →</a>
+        </div>
+      </article>
+
+      <!-- PROJECT 4: copy this block for each new project -->
+      <article class="card">
+        <div class="thumb">[Add a photo]</div>
+        <div class="body">
+          <div class="meta">[Course or personal] · [Semester]</div>
+          <h3>[Project name]</h3>
+          <p>[What was the problem? What did you build or analyze? What was your part? What was the result?]</p>
+          <div class="tags"><span>[Skill]</span><span>[Tool]</span></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <h2>Skills &amp; coursework</h2>
+    <p class="sub">[Edit these lists to match what you actually use.]</p>
+    <div class="skills">
+      <div>
+        <h3>Technical</h3>
+        <ul><li>[CAD, e.g. SolidWorks / Fusion 360]</li><li>[MATLAB / Python]</li><li>Arduino &amp; sensor integration</li><li>[Machining / 3D printing]</li></ul>
+      </div>
+      <div>
+        <h3>Relevant coursework</h3>
+        <ul><li>Mechatronics 2 (MEGR 3171)</li><li>Signal Processing II Lab (MEGR 3171L)</li><li>Thermodynamics 2</li><li>Dynamics</li><li>Motorsports</li></ul>
+      </div>
+      <div>
+        <h3>Other</h3>
+        <ul><li>Technical writing &amp; lab reports</li><li>Team collaboration</li><li>French (studied at UNC Charlotte)</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <h2>Let's connect</h2>
+    <p class="sub">Open to co-op and internship opportunities. I'd love to hear from you.</p>
+    <div class="btns">
+      <a class="btn primary" href="mailto:trmah1@charlotte.edu">trmah1@charlotte.edu</a>
+      <!-- Paste your LinkedIn URL here -->
+      <a class="btn ghost" href="https://www.linkedin.com/in/[your-profile]" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Tula Rmah · Mechanical Engineering, UNC Charlotte</footer>
+
 </body>
 </html>
