@@ -95,6 +95,19 @@
   .tags span { background: var(--accent-soft); color: var(--accent); font-size: .78rem; padding: 3px 9px; border-radius: 99px; }
   .card .more { margin-top: 14px; font-size: .9rem; font-weight: 600; text-decoration: none; }
 
+  .featured { display: grid; grid-template-columns: 300px 1fr; margin-bottom: 22px; }
+  .featured:hover { transform: none; }
+  .featured .media { background: #111; display: flex; align-items: center; justify-content: center; }
+  .featured video { width: 100%; max-height: 540px; aspect-ratio: 9/16; object-fit: contain; display: block; }
+  .featured .body { padding: 26px 28px; }
+  .featured h3 { font-size: 1.5rem; }
+  .featured p { margin-bottom: 10px; flex: none; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 8px; }
+  .stats div { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
+  .stats b { display: block; font-size: 1.2rem; color: var(--accent); }
+  .stats span { font-size: .78rem; color: var(--muted); line-height: 1.3; display: block; }
+  .links { margin-top: auto; }
+
   /* skills */
   .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 22px; }
   .skills div { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; }
@@ -109,7 +122,9 @@
 
   @media (max-width: 760px) {
     nav ul { display: none; }
-    .hero .wrap, .about-grid { grid-template-columns: 1fr; }
+    .hero .wrap, .about-grid, .featured { grid-template-columns: 1fr; }
+    .featured video { max-height: 480px; }
+    .stats { grid-template-columns: 1fr 1fr 1fr; }
     .photo { justify-self: start; max-width: 200px; order: -1; }
     header.hero { padding-top: 48px; }
   }
@@ -134,15 +149,13 @@
     <div>
       <div class="eyebrow">Mechanical Engineering · UNC Charlotte</div>
       <h1>Hi, I'm Tula.</h1>
-      <p class="lead">I'm a mechanical engineering junior who likes building things that sense, move, and respond. I'm especially interested in biotech and the automotive industry.</p>
+      <p class="lead">I'm a mechanical engineering student who wants to design products that improve people's lives, especially medical devices, nanotechnology and micro systems.</p>
       <div class="btns">
         <a class="btn primary" href="#projects">See my projects</a>
-        <!-- Upload your resume as resume.pdf in the same folder, and this button will work -->
         <a class="btn ghost" href="resume.pdf" target="_blank">Resume (PDF)</a>
       </div>
     </div>
-    <!-- Replace with a headshot: upload headshot.jpg to the same folder -->
-    <img class="photo" src="headshot.jpg" alt="Photo of Tula Rmah">
+    <img class="photo" style="object-position:center 25%" src="headshot.jpg" alt="Photo of Tula Rmah">
   </div>
 </header>
 
@@ -150,14 +163,15 @@
   <div class="wrap about-grid">
     <div>
       <h2>About me</h2>
-      <p class="sub" style="margin-bottom:16px">[Write 3–5 sentences in your own voice: what got you into engineering, what kind of problems you like solving, and what you're looking for next, e.g. a co-op or internship for 2027.]</p>
-      <p style="color:var(--muted)">I'm currently looking for mechanical engineering co-op and internship opportunities in the Charlotte area for spring and summer 2027.</p>
+      <p style="margin-bottom:14px">I'm a passionate student studying mechanical engineering. With my skills, I want to focus on bettering the lives of others by improving products and creating new ones. I want to work on projects that are substantial and benefit the masses.</p>
+      <p style="margin-bottom:14px">I'm especially interested in product design for medical devices, and in nanotechnology and micro systems.</p>
+      <p style="color:var(--muted)">I'm currently looking for mechanical engineering co-op and internship opportunities for spring and summer 2027.</p>
     </div>
     <dl class="facts">
       <dt>School</dt><dd>UNC Charlotte, William States Lee College of Engineering</dd>
       <dt>Major</dt><dd>B.S. Mechanical Engineering</dd>
-      <dt>Expected graduation</dt><dd>[Month 2028]</dd>
-      <dt>Interests</dt><dd>Biotech · Automotive · Mechatronics</dd>
+      <dt>Expected graduation</dt><dd>December 2028</dd>
+      <dt>Interests</dt><dd>Medical devices · Nanotechnology · Micro systems</dd>
     </dl>
   </div>
 </section>
@@ -167,52 +181,56 @@
     <h2>Projects</h2>
     <p class="sub">A selection of things I've designed, built, and researched.</p>
 
+    <article class="card featured">
+      <div class="media">
+        <video controls playsinline preload="metadata" poster="demo-poster.jpg">
+          <source src="demo.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="body">
+        <div class="meta">MEGR 3171 Mechatronics · Team project · Fall 2026</div>
+        <h3>Heart-Rate Gauge</h3>
+        <p>People with heart conditions, or recovering from a heart attack, are often told to keep their heart rate under a limit. My team, Mog Mob, built a desk-sized dial that reads heart rate like a speedometer and warns in plain words before it climbs too high: "All clear" up to 100 BPM, "Something's off..." up to 149, and "GET OUT NOW!" from 150 to 200.</p>
+        <p>We modeled 6 parts in Onshape with drawings and tolerances, 3D printed them in PLA, and wired a PulseSensor, servo-driven needle and OLED screen to an Arduino that filters the signal. We tested it on the whole team during a horror game, checking against hand-counted pulses with calipers, slow-motion video and a dated build log.</p>
+        <div class="stats">
+          <div><b>±4 BPM</b><span>max error vs. hand-counted pulse</span></div>
+          <div><b>$37.89</b><span>of a $50 budget</span></div>
+          <div><b>2°</b><span>needle backlash</span></div>
+        </div>
+        <div class="tags"><span>Onshape CAD</span><span>3D printing</span><span>Arduino</span><span>Sensors &amp; filtering</span><span>Testing</span></div>
+        <div class="links">
+          <a class="more" href="Heart_Rate_Gauge_Slides.pdf" target="_blank">View the presentation →</a>
+        </div>
+      </div>
+    </article>
+
     <div class="projects">
 
-      <!-- PROJECT 1 -->
       <article class="card">
-        <div class="thumb">[Add a photo of the build or a still from the demo video]</div>
         <div class="body">
-          <div class="meta">Team project · Fall 2026</div>
-          <h3>"Fear Meter" Heart-Rate Monitor</h3>
-          <p>With my team, Mog Mob, I built a device that reads heart rate with a PulseSensor and reacts when BPM passes a threshold: an OLED display shows warning messages like "get out," and a servo-driven gauge needle swings to show the fear level. [Add your specific role: e.g. sensor wiring, signal filtering, mechanical design of the gauge.]</p>
-          <div class="tags"><span>Mechatronics</span><span>Signal processing</span><span>Arduino</span><span>Sensors</span></div>
-          <!-- Link to your demo video once it's uploaded (YouTube, Google Drive, etc.) -->
-          <a class="more" href="#">Watch the demo →</a>
+          <div class="meta">Machine Shop/Design course</div>
+          <h3>Compressed-Air Engine</h3>
+          <p>Modeled the complete engine assembly and every component in SolidWorks, then fabricated all parts on a manual lathe and vertical mill. After fit-up, troubleshooting and final assembly, the engine ran at up to 6,000 RPM.</p>
+          <div class="tags"><span>SolidWorks</span><span>Manual lathe</span><span>Vertical mill</span><span>Assembly</span></div>
         </div>
       </article>
 
-      <!-- PROJECT 2 -->
       <article class="card">
-        <div class="thumb">[Add a campus photo or a chart from your findings]</div>
         <div class="body">
-          <div class="meta">Research · Fall 2026</div>
-          <h3>Engineering Campus Capacity Study</h3>
-          <p>Archival research for the College of Engineering supporting the case for a new engineering building: tracing when the engineering campus was built (2003–2004), the student, faculty and staff numbers it was designed for, and how far current enrollment has grown beyond them. [Add a key finding, e.g. "enrollment is now X% above design capacity."]</p>
-          <div class="tags"><span>Research</span><span>Data analysis</span><span>Technical writing</span></div>
+          <div class="meta">Sophomore design course</div>
+          <h3>Belt Buckle FEA Analysis</h3>
+          <p>Designed a two-part belt buckle with a strap pulling down on both sides of the loop. I calculated the length, width and height of each part, then applied the given tensile force in SolidWorks Simulation and sized the buckle so it could support the required weight.</p>
+          <div class="tags"><span>SolidWorks Simulation</span><span>FEA</span><span>Hand calculations</span></div>
         </div>
       </article>
 
-      <!-- PROJECT 3 -->
       <article class="card">
-        <div class="thumb">[Add a photo]</div>
         <div class="body">
           <div class="meta">ENGR 1202 · Freshman year</div>
           <h3>Intro to Engineering Group Project</h3>
           <p>[Describe what your team designed or built in ENGR 1202, what you were responsible for, and what you learned.]</p>
           <div class="tags"><span>Teamwork</span><span>Design</span></div>
           <a class="more" href="https://webpages.charlotte.edu/jrezin/Home.html" target="_blank">View project page →</a>
-        </div>
-      </article>
-
-      <!-- PROJECT 4: copy this block for each new project -->
-      <article class="card">
-        <div class="thumb">[Add a photo]</div>
-        <div class="body">
-          <div class="meta">[Course or personal] · [Semester]</div>
-          <h3>[Project name]</h3>
-          <p>[What was the problem? What did you build or analyze? What was your part? What was the result?]</p>
-          <div class="tags"><span>[Skill]</span><span>[Tool]</span></div>
         </div>
       </article>
 
@@ -223,15 +241,15 @@
 <section id="skills">
   <div class="wrap">
     <h2>Skills &amp; coursework</h2>
-    <p class="sub">[Edit these lists to match what you actually use.]</p>
+    <p class="sub">Tools and topics I work with.</p>
     <div class="skills">
       <div>
         <h3>Technical</h3>
-        <ul><li>[CAD, e.g. SolidWorks / Fusion 360]</li><li>[MATLAB / Python]</li><li>Arduino &amp; sensor integration</li><li>[Machining / 3D printing]</li></ul>
+        <ul><li>SolidWorks &amp; Onshape CAD</li><li>SolidWorks Simulation / FEA</li><li>Manual lathe &amp; vertical mill</li><li>3D printing (PLA)</li><li>Arduino &amp; sensor integration</li></ul>
       </div>
       <div>
         <h3>Relevant coursework</h3>
-        <ul><li>Mechatronics 2 (MEGR 3171)</li><li>Signal Processing II Lab (MEGR 3171L)</li><li>Thermodynamics 2</li><li>Dynamics</li><li>Motorsports</li></ul>
+        <ul><li>Mechatronics (MEGR 3171)</li><li>Machine Shop/Design</li><li>Signal Processing II Lab (MEGR 3171L)</li><li>Thermodynamics 2</li><li>Dynamics</li><li>Motorsports</li></ul>
       </div>
       <div>
         <h3>Other</h3>
@@ -247,8 +265,7 @@
     <p class="sub">Open to co-op and internship opportunities. I'd love to hear from you.</p>
     <div class="btns">
       <a class="btn primary" href="mailto:trmah1@charlotte.edu">trmah1@charlotte.edu</a>
-      <!-- Paste your LinkedIn URL here -->
-      <a class="btn ghost" href="https://www.linkedin.com/in/[your-profile]" target="_blank">LinkedIn</a>
+      <a class="btn ghost" href="resume.pdf" target="_blank">Resume (PDF)</a>
     </div>
   </div>
 </section>
