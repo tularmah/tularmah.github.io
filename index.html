@@ -118,6 +118,14 @@
                   background: linear-gradient(transparent, rgba(0,0,0,.65)); }
   .wide .body { padding: 22px 28px 26px; }
   .wide h3 { font-size: 1.4rem; }
+  .wide p { margin-bottom: 10px; flex: none; }
+
+  .gallery.light a { background: #fff; }
+  .gallery.light img { object-fit: contain; }
+  .gallery.tt { grid-template-columns: 0.7fr 1fr 1fr; grid-template-rows: 190px 190px; }
+  .gallery.tt a { aspect-ratio: auto; }
+  .gallery.tt .tall { grid-row: span 2; }
+  .gallery.tt a:nth-child(5) { grid-column: 3; }
 
   /* skills */
   .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 22px; }
@@ -136,6 +144,10 @@
     .hero .wrap, .about-grid, .featured { grid-template-columns: 1fr; }
     .featured video { max-height: 480px; }
     .gallery { grid-template-columns: 1fr 1fr; }
+    .gallery.tt { grid-template-columns: 1fr 1fr; grid-template-rows: none; }
+    .gallery.tt a { aspect-ratio: 4/3; }
+    .gallery.tt .tall { grid-row: auto; grid-column: span 2; aspect-ratio: auto; height: 320px; }
+    .gallery.tt a:nth-child(5) { grid-column: auto; }
     .stats { grid-template-columns: 1fr 1fr 1fr; }
     .photo { justify-self: start; max-width: 200px; order: -1; }
     header.hero { padding-top: 48px; }
@@ -233,17 +245,43 @@
       </div>
     </article>
 
+    <article class="card wide">
+      <div class="gallery tt light">
+        <a href="tensile-tester-cad.jpg" target="_blank" class="tall"><img src="tensile-tester-cad.jpg" alt="SolidWorks assembly of the dual lead-screw tensile tester" loading="lazy"><span>Full assembly (SolidWorks)</span></a>
+        <a href="speed-torque-curve.jpg" target="_blank"><img src="speed-torque-curve.jpg" alt="Hand-drawn speed-torque curve for the selected stepper motor" loading="lazy"><span>My motor speed-torque curve</span></a>
+        <a href="motor-mount-calcs.jpg" target="_blank"><img src="motor-mount-calcs.jpg" alt="Hand calculations sizing the motor mount plate thickness" loading="lazy"><span>My motor mount sizing calcs</span></a>
+        <a href="tt-top-frame-fea.jpg" target="_blank"><img src="tt-top-frame-fea.jpg" alt="FEA displacement plot of the top frame rails" loading="lazy"><span>Top frame FEA (teammate)</span></a>
+        <a href="tt-vertical-frame-fea.jpg" target="_blank"><img src="tt-vertical-frame-fea.jpg" alt="FEA plot of a vertical frame rail" loading="lazy"><span>Vertical frame FEA (teammate)</span></a>
+      </div>
+      <div class="body">
+        <div class="meta">Sophomore design course · Team project</div>
+        <h3>Tensile Tester: Motor Selection &amp; Drive Design</h3>
+        <p>My team designed a benchtop tensile tester driven by two lead screws. I was responsible for the drive system. I selected a geared NEMA 17 stepper motor by splitting the required lead-screw torque across two motors (1.71 N·m each, against a 1.98 N·m holding torque), and built its speed-torque curve to confirm it could hit the 1–50 mm/min crosshead speed range.</p>
+        <p>I also designed the 6061-T6 aluminum motor mount plate, choosing 6 mm thick (well above the 0.97 mm minimum) to limit deflection, with about 1.78 MPa of bending stress at a safety factor of 4. Then I selected a flexible clamping coupler that matches the 5 mm motor shaft to the ¼ in. lead screw, checking it in torsion: 7.25 mm minimum outer diameter needed versus 20 mm actual. My teammates handled the frame twist analysis and FEA, the floating bearing mount, and the bill of materials and cost estimate.</p>
+        <div class="tags"><span>Motor selection</span><span>Speed-torque analysis</span><span>Stress &amp; torsion calculations</span><span>SolidWorks</span><span>Component sourcing</span></div>
+        <div class="links"><a class="more" href="Tensile_Tester_Team_Report.pdf" target="_blank">Read the full team report (PDF) →</a></div>
+      </div>
+    </article>
+
+    <article class="card wide">
+      <div class="gallery light">
+        <a href="bracket-concept.jpg" target="_blank"><img src="bracket-concept.jpg" alt="Concept CAD model of the strap bracket" loading="lazy"><span>1 · Concept design</span></a>
+        <a href="bracket-dimensions.jpg" target="_blank"><img src="bracket-dimensions.jpg" alt="Bracket model with 0.30 in corner cuts dimensioned" loading="lazy"><span>2 · Cutting weight from the corners</span></a>
+        <a href="bracket-final.jpg" target="_blank"><img src="bracket-final.jpg" alt="Final filleted bracket design" loading="lazy"><span>3 · Final filleted design</span></a>
+        <a href="bracket-stress.jpg" target="_blank"><img src="bracket-stress.jpg" alt="Von Mises stress plot of the final bracket under a 250 lbf load" loading="lazy"><span>4 · Stress under 250 lbf</span></a>
+      </div>
+      <div class="body">
+        <div class="meta">MEGR 2156 Design Projects Lab · Spring 2026</div>
+        <h3>Strap Bracket Design &amp; FEA Optimization</h3>
+        <p>I designed a Nylon 101 bracket that holds a strap around a cylindrical bar, then used SolidWorks Simulation to make it stiff, strong and light. I fixed the back face where the bracket mounts, applied a 250 lbf strap load to the bar, and refined the mesh until stress, deflection and safety factor all agreed within 7%.</p>
+        <p>From there I changed the geometry over three design rounds: I made the base and top flanges larger for stiffness, then cut 0.30 in. of material from each corner and added fillets to bring the weight back down. The final design weighs 0.30 lb, deflects only about 0.0006 in. and has a safety factor of 117.</p>
+        <div class="tags"><span>SolidWorks</span><span>FEA</span><span>Mesh convergence</span><span>Design optimization</span><span>Lightweighting</span></div>
+      </div>
+    </article>
+
     <div class="projects">
 
 
-      <article class="card">
-        <div class="body">
-          <div class="meta">Sophomore design course</div>
-          <h3>Belt Buckle FEA Analysis</h3>
-          <p>Designed a two-part belt buckle with a strap pulling down on both sides of the loop. I calculated the length, width and height of each part, then applied the given tensile force in SolidWorks Simulation and sized the buckle so it could support the required weight.</p>
-          <div class="tags"><span>SolidWorks Simulation</span><span>FEA</span><span>Hand calculations</span></div>
-        </div>
-      </article>
 
       <article class="card">
         <div class="body">
