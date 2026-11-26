@@ -108,6 +108,17 @@
   .stats span { font-size: .78rem; color: var(--muted); line-height: 1.3; display: block; }
   .links { margin-top: auto; }
 
+  .wide { margin-bottom: 22px; }
+  .wide:hover { transform: none; }
+  .gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; background: var(--line); }
+  .gallery a { position: relative; display: block; aspect-ratio: 4/3; overflow: hidden; }
+  .gallery img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .25s; }
+  .gallery a:hover img { transform: scale(1.04); }
+  .gallery span { position: absolute; left: 0; right: 0; bottom: 0; padding: 18px 10px 7px; font-size: .78rem; color: #fff;
+                  background: linear-gradient(transparent, rgba(0,0,0,.65)); }
+  .wide .body { padding: 22px 28px 26px; }
+  .wide h3 { font-size: 1.4rem; }
+
   /* skills */
   .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 22px; }
   .skills div { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; }
@@ -124,6 +135,7 @@
     nav ul { display: none; }
     .hero .wrap, .about-grid, .featured { grid-template-columns: 1fr; }
     .featured video { max-height: 480px; }
+    .gallery { grid-template-columns: 1fr 1fr; }
     .stats { grid-template-columns: 1fr 1fr 1fr; }
     .photo { justify-self: start; max-width: 200px; order: -1; }
     header.hero { padding-top: 48px; }
@@ -204,16 +216,23 @@
       </div>
     </article>
 
+    <article class="card wide">
+      <div class="gallery">
+        <a href="shop-lathe-turning.jpg" target="_blank"><img src="shop-lathe-turning.jpg" alt="Shaft stock clamped in a lathe chuck, ready for turning" loading="lazy"><span>Turning the shaft on the lathe</span></a>
+        <a href="shop-drawing-shaft.jpg" target="_blank"><img src="shop-drawing-shaft.jpg" alt="Engineering drawing of the engine shaft, Item 11" loading="lazy"><span>Shop drawing: shaft (Item 11)</span></a>
+        <a href="shop-lathe.jpg" target="_blank"><img src="shop-lathe.jpg" alt="JET GHB-1236 manual lathe in the machine shop" loading="lazy"><span>Manual lathe</span></a>
+        <a href="shop-mill.jpg" target="_blank"><img src="shop-mill.jpg" alt="JET vertical milling machine in the machine shop" loading="lazy"><span>Vertical mill</span></a>
+      </div>
+      <div class="body">
+        <div class="meta">Machine Shop/Design course</div>
+        <h3>Compressed-Air Engine</h3>
+        <p>I built a working engine from the 3/8" Square Steam Engine drawing set (original design by Roland Hege), running it on compressed air. I modeled the full assembly and every component in SolidWorks, then made all the parts myself on a manual lathe and vertical mill, working from drawings with tolerances as tight as +0.0005 in. on the shaft. After fit-up, troubleshooting and final assembly, the engine ran at up to 6,000 RPM.</p>
+        <div class="tags"><span>SolidWorks</span><span>Reading engineering drawings</span><span>Manual lathe</span><span>Vertical mill</span><span>Assembly</span></div>
+      </div>
+    </article>
+
     <div class="projects">
 
-      <article class="card">
-        <div class="body">
-          <div class="meta">Machine Shop/Design course</div>
-          <h3>Compressed-Air Engine</h3>
-          <p>Modeled the complete engine assembly and every component in SolidWorks, then fabricated all parts on a manual lathe and vertical mill. After fit-up, troubleshooting and final assembly, the engine ran at up to 6,000 RPM.</p>
-          <div class="tags"><span>SolidWorks</span><span>Manual lathe</span><span>Vertical mill</span><span>Assembly</span></div>
-        </div>
-      </article>
 
       <article class="card">
         <div class="body">
